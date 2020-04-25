@@ -5,17 +5,16 @@ node{
   }
 
   stage('Build image') {
-    sh 'docker build -t venance/nginx .'
+    app=docker.build("venance/nginx")
   }
 
   stage('Run image') {
-      
-      sh 'docker run -d --name=nginx-dev -p 80:80 venance/nginx'
+      docker.image("venance/nginx").withRun('-p 80:80') { c ->
 
       sh 'docker ps'
 
       sh 'curl localhost'
 
   } 
-  
+  }
 }
