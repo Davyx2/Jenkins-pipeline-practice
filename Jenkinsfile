@@ -1,4 +1,4 @@
-node{
+node('porto'){
   def app
   stage('Clone') {
       checkout scm
